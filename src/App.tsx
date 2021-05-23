@@ -58,8 +58,6 @@ function App() {
     },
   ] as Item[]
 
-  console.log(items)
-
   return (
     <ReactScheduler
       changeable={true}

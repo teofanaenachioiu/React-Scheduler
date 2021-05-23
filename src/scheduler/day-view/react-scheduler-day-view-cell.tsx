@@ -13,19 +13,19 @@ export function ReactSchedulerDayViewCell({
   entry,
   onClick,
 }: Props) {
-  const overflow = (content: Entry): number =>
-    content.date instanceof Date
-      ? 0
-      : moment(content.date[1]).hours() -
-        Math.max(moment(content.date[0]).hours(), startHour)
+  const overflow =
+    entry && entry.date instanceof Array
+      ? moment(entry.date[1]).hours() -
+        Math.max(moment(entry.date[0]).hours(), startHour)
+      : 0
 
   return entry ? (
     <div
       className="react-scheduler-week-view-cell-fill"
       onClick={onClick}
       style={{
-        width: overflow(entry) ? overflow(entry) + 1 + '00%' : '100%',
-        left: overflow(entry) ? '-' + overflow(entry) + '00%' : '0',
+        width: `calc(${overflow + 1}00% + ${overflow}px`,
+        left: `calc(-${overflow * 100}% - ${overflow}px`,
       }}
     >
       {entry.text}

@@ -9,24 +9,24 @@ type Props = {
 }
 
 export function ReactSchedulerWeekViewCell({ date, entry, onClick }: Props) {
-  const overflow = (content: Entry): number =>
-    content.date instanceof Date
-      ? 0
-      : moment(date).diff(
+  const overflow =
+    entry && entry.date instanceof Array
+      ? moment(date).diff(
           moment.max([
-            moment(content.date[0]).startOf('days'),
+            moment(entry.date[0]).startOf('days'),
             moment(date).startOf('isoWeek'),
           ]),
           'days',
         )
+      : 0
 
   return entry ? (
     <div
       className="react-scheduler-week-view-cell-fill"
       onClick={onClick}
       style={{
-        width: overflow(entry) ? overflow(entry) + 1 + '00%' : '100%',
-        left: overflow(entry) ? '-' + overflow(entry) + '00%' : '0',
+        width: `calc(${overflow + 1}00% + ${overflow}px`,
+        left: `calc(-${overflow * 100}% - ${overflow}px`,
       }}
     >
       {entry.text}
