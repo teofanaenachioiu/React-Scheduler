@@ -1,5 +1,10 @@
-import moment from 'moment'
 import { Entry, Item } from '../types'
+import {
+  checkIsSameDay,
+  checkIsSameEndHour,
+  checkIsInInterval,
+  hoursRange,
+} from '../utils'
 import { ReactSchedulerDayViewCell } from './react-scheduler-day-view-cell'
 import { ReactSchedulerDayViewHeader } from './react-scheduler-day-view-header'
 import './react-scheduler-day-view.css'
@@ -19,35 +24,15 @@ export function ReactSchedulerDayView({
   hourEnd,
   hourStep,
 }: Props) {
-  const hours = Array.from(Array((hourEnd - hourStart) / hourStep).keys()).map(
-    (key) => hourStart + key * hourStep,
-  )
-  if (!hours.includes(hourEnd)) {
-    hours.push(hourEnd)
-  }
+  const hours = hoursRange(hourStart, hourEnd, hourStep)
 
-  const cellText = (item: Item, _hour: number): Entry | undefined => {
-    return item.items.find((i) => {
-      if (i.date instanceof Date) {
-        return (
-          moment(i.date).startOf('days').isSame(moment(date).startOf('days')) &&
-          moment(i.date).hours() === _hour
-        )
-      } else {
-        const [start, end] = i.date
-
-        return (
-          (moment(date).isBetween(
-            moment(start).startOf('days'),
-            moment(end).startOf('days'),
-            null,
-          ) ||
-            false) &&
-          _hour === moment(end).hours()
-        )
-      }
-    })
-  }
+  const cellEntry = (item: Item, _hour: number): Entry | undefined =>
+    item.items.find((i) =>
+      i.date instanceof Date
+        ? checkIsSameDay(i.date, date) && checkIsSameEndHour(i.date, _hour)
+        : checkIsInInterval(date, i.date) &&
+          checkIsSameEndHour(i.date[1], _hour),
+    )
 
   return (
     <div className="react-scheduler-day">
@@ -62,7 +47,7 @@ export function ReactSchedulerDayView({
               <div key={idx} className="react-scheduler-week-view-cell">
                 <ReactSchedulerDayViewCell
                   startHour={hourStart}
-                  entry={cellText(item, cellDate)}
+                  entry={cellEntry(item, cellDate)}
                   onClick={item.onClick}
                 />
               </div>

@@ -6,7 +6,7 @@ import {
   faCalendarWeek,
   faClock,
 } from '@fortawesome/free-solid-svg-icons'
-import { formatDateDay, formatDateWeek } from '../utils'
+import { formatFullDate, formatDateWeek } from '../format'
 import './react-scheduler-toolbar.css'
 
 type Props = {
@@ -54,7 +54,7 @@ export function ReactSchedulerToolbar({
             icon={view === 'day' ? faCalendarDay : faCalendarWeek}
           />{' '}
           {view === 'day'
-            ? formatDateDay(date)
+            ? formatFullDate(date)
             : `Week ${formatDateWeek(date)}`}
         </span>
         <FontAwesomeIcon

@@ -1,29 +1,21 @@
-import moment from 'moment'
-import * as React from 'react'
-import { formatDateWithDayAndMonth, formatDateWithDayName } from '../utils'
+import { Moment } from 'moment'
+import { formatDateWithDayAndMonth, formatDateWithDayName } from '../format'
 
 type Props = {
-  workWeek: boolean
-  date: Date
+  dates: Moment[]
 }
 
-export function ReactSchedulerWeekViewHeader({ workWeek, date }: Props) {
-  const cells = Array.from(Array(workWeek ? 5 : 7).keys()).map((key) =>
-    moment(date)
-      .startOf('week')
-      .add(key + 1, 'days'),
-  )
-
+export function ReactSchedulerWeekViewHeader({ dates }: Props) {
   return (
     <div className="react-scheduler-week-view-row">
       <div className="react-scheduler-week-view-cell react-scheduler-week-view-cell-header"></div>
-      {cells.map((cell, idx) => (
+      {dates.map((date, idx) => (
         <div
           key={idx}
           className="react-scheduler-week-view-cell react-scheduler-week-view-cell-header"
         >
-          <div>{formatDateWithDayName(cell)}</div>
-          <div className="header-date">{formatDateWithDayAndMonth(cell)}</div>
+          <div>{formatDateWithDayName(date)}</div>
+          <div className="header-date">{formatDateWithDayAndMonth(date)}</div>
         </div>
       ))}
     </div>

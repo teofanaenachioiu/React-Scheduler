@@ -1,6 +1,12 @@
-import moment, { Moment } from 'moment'
 import * as React from 'react'
+import { Moment } from 'moment'
 import { Item, Entry } from '../types'
+import {
+  checkIsFriday,
+  checkIsInInterval,
+  checkIsSameDay,
+  datesRange,
+} from '../utils'
 import { ReactSchedulerWeekViewCell } from './react-scheduler-week-view-cell'
 import { ReactSchedulerWeekViewHeader } from './react-scheduler-week-view-header'
 import './react-scheduler-week-view.css'
@@ -12,36 +18,19 @@ type Props = {
 }
 
 export function ReactSchedulerWeekView({ workWeek, date, items }: Props) {
-  const dates = Array.from(Array(workWeek ? 5 : 7).keys()).map((key) =>
-    moment(date)
-      .startOf('days')
-      .startOf('week')
-      .add(key + 1, 'days'),
-  )
+  const dates = datesRange(date, workWeek)
 
-  const cellText = (item: Item, cellDate: Moment): Entry | undefined => {
-    return item.items.find((i) => {
-      if (i.date instanceof Date) {
-        return moment(i.date).startOf('days').isSame(cellDate)
-      } else {
-        const [start, end] = i.date
-        return (
-          moment(end).startOf('days').isSame(cellDate) ||
-          (moment(cellDate).days(5).isSame(cellDate) &&
-            moment(cellDate).isBetween(
-              moment(start).startOf('days'),
-              moment(end).startOf('days'),
-              null,
-            )) ||
-          false
-        )
-      }
-    })
-  }
+  const cellEntry = (item: Item, cellDate: Moment): Entry | undefined =>
+    item.items.find((i) =>
+      i.date instanceof Date
+        ? checkIsSameDay(i.date, cellDate)
+        : checkIsSameDay(i.date[1], cellDate) ||
+          (checkIsFriday(cellDate) && checkIsInInterval(cellDate, i.date)),
+    )
 
   return (
     <React.Fragment>
-      <ReactSchedulerWeekViewHeader workWeek={workWeek} date={date} />
+      <ReactSchedulerWeekViewHeader dates={dates} />
       <div className="react-scheduler-week-view">
         {items.map((item, idx) => (
           <div key={idx} className="react-scheduler-week-view-row">
@@ -53,7 +42,7 @@ export function ReactSchedulerWeekView({ workWeek, date, items }: Props) {
                 {
                   <ReactSchedulerWeekViewCell
                     date={cellDate.toDate()}
-                    entry={cellText(item, cellDate)}
+                    entry={cellEntry(item, cellDate)}
                     onClick={item.onClick}
                   />
                 }

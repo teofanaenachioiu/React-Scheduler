@@ -1,21 +1,50 @@
 import moment, { Moment } from 'moment'
 
-export function formatDateDay(date: Moment | Date): string {
-  return moment(date).format('DD/MM/YYYY')
+export function hoursRange(start: number, end: number, step: number): number[] {
+  const hours = Array.from(Array((end - start) / step).keys()).map(
+    (key) => start + key * step,
+  )
+  if (!hours.includes(end)) {
+    hours.push(end)
+  }
+  return hours
 }
 
-export function formatDateWithDayAndMonth(date: Moment | Date): string {
-  return moment(date).format('DD/MM')
+export function datesRange(date: Date, workWeek: boolean): Moment[] {
+  return Array.from(Array(workWeek ? 5 : 7).keys()).map((key) =>
+    moment(date)
+      .startOf('days')
+      .startOf('week')
+      .add(key + 1, 'days'),
+  )
 }
 
-export function formatDateWithDayName(date: Moment | Date): string {
-  return moment(date).format('ddd')
+export function checkIsSameDay(
+  date1: Date | Moment,
+  date2: Date | Moment,
+): boolean {
+  return moment(date1).startOf('days').isSame(moment(date2).startOf('days'))
 }
 
-export function formatDateWeek(date: Moment | Date): string {
-  return moment(date).format('w')
+export function checkIsSameEndHour(date: Date | Moment, hour: number): boolean {
+  return moment(date).hours() === hour
 }
 
-export function formatHour(hour: number): string {
-  return moment().startOf('days').add(hour, 'hour').format('HH:mm')
+export function checkIsInInterval(
+  date: Date | Moment,
+  interval: [Date, Date],
+): boolean {
+  const [start, end] = interval
+  return moment(date).isBetween(
+    moment(start).startOf('days'),
+    moment(end).startOf('days'),
+    null,
+  )
+}
+
+export function checkIsFriday(date: Date | Moment): boolean {
+  return moment(date)
+    .startOf('days')
+    .days(5)
+    .isSame(moment(date).startOf('days'))
 }

@@ -1,5 +1,4 @@
-import * as React from 'react'
-import { formatHour } from '../utils'
+import { formatHour } from '../format'
 
 type Props = {
   hours: number[]
