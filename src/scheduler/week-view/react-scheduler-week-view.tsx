@@ -9,7 +9,6 @@ import {
 } from '../utils'
 import { ReactSchedulerWeekViewCell } from './react-scheduler-week-view-cell'
 import { ReactSchedulerWeekViewHeader } from './react-scheduler-week-view-header'
-import './react-scheduler-week-view.css'
 
 type Props = {
   workWeek: boolean

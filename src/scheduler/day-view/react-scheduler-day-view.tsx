@@ -7,7 +7,6 @@ import {
 } from '../utils'
 import { ReactSchedulerDayViewCell } from './react-scheduler-day-view-cell'
 import { ReactSchedulerDayViewHeader } from './react-scheduler-day-view-header'
-import './react-scheduler-day-view.css'
 
 type Props = {
   date: Date
@@ -35,7 +34,7 @@ export function ReactSchedulerDayView({
     )
 
   return (
-    <div className="react-scheduler-day">
+    <div className="react-scheduler-day-view">
       <ReactSchedulerDayViewHeader hours={hours} />
       <div className="react-scheduler-week-view">
         {items.map((item, idx) => (

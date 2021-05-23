@@ -67,3 +67,18 @@
 .react-scheduler-view-cell-fill:hover {
   background-color: #00a7a7;
 }
+
+.react-scheduler-day-view {
+  overflow: auto;
+}
+
+.react-scheduler-day-view .react-scheduler-view-cell:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+}
+
+.react-scheduler-day-view .react-scheduler-view-row {
+  justify-content: left !important;
+  width: fit-content;
+}
