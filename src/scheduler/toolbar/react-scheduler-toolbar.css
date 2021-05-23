@@ -1,0 +1,31 @@
+.react-scheduler-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 1px #dcdcdc;
+  background-color: whitesmoke;
+  height: 3rem;
+}
+
+.react-scheduler-toolbar-text {
+  cursor: default;
+  font-weight: bold;
+  padding: 0.5rem;
+}
+
+.react-scheduler-toolbar-view {
+  padding: 0.3rem;
+  outline: none;
+  border: none;
+  background-color: gainsboro;
+  margin-right: 0.5rem;
+  border-radius: 5px;
+}
+
+.react-scheduler-toolbar-view:hover {
+  background-color: #e6e6e6;
+}
+
+.pointer {
+  cursor: pointer;
+}

@@ -1,26 +1,63 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import moment from 'moment'
+import React from 'react'
+import { ReactScheduler } from './scheduler/react-scheduler'
 
 function App() {
+  //   window.addEventListener('resize', () =>
+  //   dispatch(resizeDevice(getDeviceTypeFromWidth(window.innerWidth))),
+  // );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <ReactScheduler
+      changeable={true}
+      items={[
+        {
+          name: 'zero',
+          items: [
+            {
+              text: 'lala',
+              date: moment().subtract(10, 'days').toDate(),
+            },
+          ],
+        },
+        {
+          name: 'first',
+          items: [
+            {
+              text: 'dada',
+              date: [
+                moment().subtract(11, 'days').toDate(),
+                moment().subtract(2, 'days').toDate(),
+              ],
+            },
+          ],
+        },
+        {
+          name: 'second',
+          items: [
+            {
+              text: 'tata',
+              date: moment()
+                .startOf('days')
+                .add(10, 'hours')
+                .subtract(2, 'days')
+                .toDate(),
+            },
+          ],
+          onClick: () => alert('click!'),
+        },
+        {
+          name: 'third',
+          items: [
+            {
+              text: 'dadadadad adadadadad adda',
+              date: moment().subtract(2, 'days').toDate(),
+            },
+          ],
+        },
+      ]}
+    />
+  )
 }
 
-export default App;
+export default App

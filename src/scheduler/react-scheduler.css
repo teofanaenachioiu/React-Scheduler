@@ -1,0 +1,9 @@
+.react-scheduler {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  width: inherit;
+  min-width: 30rem;
+  max-width: 40rem;
+  font-size: 14px;
+}
