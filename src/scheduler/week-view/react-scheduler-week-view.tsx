@@ -15,6 +15,7 @@ type Props = {
   workWeek: boolean
   date: Date
   items: Item[]
+  multipleSlotSelection: boolean
   onSelectSlot?: (start: Date, end: Date) => void
 }
 
@@ -22,6 +23,7 @@ export function ReactSchedulerWeekView({
   workWeek,
   date,
   items,
+  multipleSlotSelection,
   onSelectSlot,
 }: Props) {
   const [selectedStart, setSelectedStart] = useState(
@@ -89,7 +91,7 @@ export function ReactSchedulerWeekView({
                 active={
                   selectedStart !== undefined &&
                   selectedEnd !== undefined &&
-                  iidx === selectedRow &&
+                  (multipleSlotSelection || iidx === selectedRow) &&
                   (checkIsSameDay(cellDate, selectedStart) ||
                     checkIsSameDay(cellDate, selectedEnd) ||
                     checkIsInInterval(cellDate, [selectedStart, selectedEnd]) ||

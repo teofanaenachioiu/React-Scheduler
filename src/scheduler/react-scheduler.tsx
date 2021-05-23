@@ -21,6 +21,7 @@ type Props = {
   minDate?: Date
   maxDate?: Date
   onSelectSlot?: (start: number | Date, end: number | Date) => void
+  multipleSlotSelection?: boolean
 }
 
 export function ReactScheduler({
@@ -36,6 +37,7 @@ export function ReactScheduler({
   stepHour = 1,
   minDate,
   maxDate,
+  multipleSlotSelection = true,
   onSelectSlot,
 }: Props) {
   const [dateState, setDate] = useState(selectedDate)
@@ -78,6 +80,7 @@ export function ReactScheduler({
           startHour={startHour}
           endHour={endHour}
           stepHour={stepHour}
+          multipleSlotSelection={multipleSlotSelection}
           onSelectSlot={onSelectSlot}
         />
       ) : (
@@ -85,6 +88,7 @@ export function ReactScheduler({
           workWeek={workWeek}
           date={dateState}
           items={items}
+          multipleSlotSelection={multipleSlotSelection}
           onSelectSlot={onSelectSlot}
         />
       )}

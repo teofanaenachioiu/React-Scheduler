@@ -15,6 +15,7 @@ type Props = {
   startHour: number
   endHour: number
   stepHour: number
+  multipleSlotSelection: boolean
   onSelectSlot?: (start: number, end: number) => void
 }
 
@@ -25,6 +26,7 @@ export function ReactSchedulerDayView({
   endHour,
   stepHour,
   onSelectSlot,
+  multipleSlotSelection,
 }: Props) {
   const [selectedStart, setSelectedStart] = useState(
     undefined as number | undefined,
@@ -92,7 +94,7 @@ export function ReactSchedulerDayView({
                   selectedRow !== undefined &&
                   selectedStart !== undefined &&
                   selectedEnd !== undefined &&
-                  ridx === selectedRow &&
+                  (multipleSlotSelection || ridx === selectedRow) &&
                   ((hour >= selectedStart && hour <= selectedEnd) ||
                     (hour >= selectedEnd && hour <= selectedStart))
                 }
