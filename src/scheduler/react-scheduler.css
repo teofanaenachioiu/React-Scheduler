@@ -21,6 +21,7 @@
 }
 
 .react-scheduler-view-cell {
+  cursor: pointer;
   position: relative;
   display: flex;
   border-right: solid 1px gainsboro;
@@ -34,6 +35,11 @@
   background-color: #f5f5f5;
   border-left: solid 1px gainsboro;
   padding: 0.4rem;
+}
+
+.react-scheduler-view-cell.active {
+  background-color: #008080;
+  opacity: 0.3;
 }
 
 .react-scheduler-view-cell-header {

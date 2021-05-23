@@ -28,6 +28,7 @@ function App() {
           ],
         },
       ],
+      onClick: () => alert('click!'),
     },
     {
       name: 'second',
@@ -61,6 +62,7 @@ function App() {
       items={items}
       minDate={moment().startOf('days').subtract(10, 'days').toDate()}
       maxDate={moment().startOf('days').add(10, 'days').toDate()}
+      onSelectSlot={(start, end) => alert(`${start} ${end}`)}
     />
   )
 }

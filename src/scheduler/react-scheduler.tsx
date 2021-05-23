@@ -20,6 +20,7 @@ type Props = {
   stepHour?: number
   minDate?: Date
   maxDate?: Date
+  onSelectSlot?: (start: number, end: number) => void
 }
 
 export function ReactScheduler({
@@ -35,6 +36,7 @@ export function ReactScheduler({
   stepHour = 1,
   minDate,
   maxDate,
+  onSelectSlot,
 }: Props) {
   const [dateState, setDate] = useState(selectedDate)
   const [viewState, setView] = useState(view)
@@ -76,6 +78,7 @@ export function ReactScheduler({
           startHour={startHour}
           endHour={endHour}
           stepHour={stepHour}
+          onSelectSlot={onSelectSlot}
         />
       ) : (
         <ReactSchedulerWeekView
