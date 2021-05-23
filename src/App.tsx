@@ -1,12 +1,8 @@
 import moment from 'moment'
-import React from 'react'
-import { Item, ReactScheduler } from './scheduler/react-scheduler'
+import { ReactScheduler } from './scheduler/react-scheduler'
+import { Item } from './scheduler/types'
 
 function App() {
-  //   window.addEventListener('resize', () =>
-  //   dispatch(resizeDevice(getDeviceTypeFromWidth(window.innerWidth))),
-  // );
-
   const items = [
     {
       name: 'zero',

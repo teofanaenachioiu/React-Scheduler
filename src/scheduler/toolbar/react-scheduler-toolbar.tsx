@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faChevronLeft,
@@ -33,43 +32,52 @@ export function ReactSchedulerToolbar({
 }: Props) {
   return (
     <div className="react-scheduler-toolbar">
-      {todayIcon ? (
-        <FontAwesomeIcon
-          onClick={onClickReset}
-          className="pointer"
-          icon={faClock}
-        />
-      ) : null}
-      <span className="react-scheduler-toolbar-text">
+      <div>
+        {todayIcon ? (
+          <FontAwesomeIcon
+            onClick={onClickReset}
+            className="pointer"
+            icon={faClock}
+          />
+        ) : null}
+      </div>
+
+      <div className="react-scheduler-toolbar-text">
         <FontAwesomeIcon
           onClick={onClickLeftArrow}
           className="pointer"
           icon={faChevronLeft}
           size="xs"
-        />{' '}
-        <FontAwesomeIcon
-          icon={view === 'day' ? faCalendarDay : faCalendarWeek}
-        />{' '}
-        {view === 'day' ? formatDateDay(date) : `Week ${formatDateWeek(date)} `}
+        />
+        <span>
+          <FontAwesomeIcon
+            icon={view === 'day' ? faCalendarDay : faCalendarWeek}
+          />{' '}
+          {view === 'day'
+            ? formatDateDay(date)
+            : `Week ${formatDateWeek(date)}`}
+        </span>
         <FontAwesomeIcon
           onClick={onClickRightArrow}
           className="pointer"
           icon={faChevronRight}
           size="xs"
         />
-      </span>
-      {changeable ? (
-        <select
-          name="view"
-          id="view"
-          className="pointer react-scheduler-toolbar-view"
-          onChange={(e) => onChangeView(e.target.value as 'day' | 'week')}
-          value={view}
-        >
-          <option value="day">Day</option>
-          <option value="week">Week</option>
-        </select>
-      ) : null}
+      </div>
+
+      <div className="pointer react-scheduler-toolbar-view">
+        {changeable ? (
+          <select
+            name="view"
+            id="view"
+            onChange={(e) => onChangeView(e.target.value as 'day' | 'week')}
+            value={view}
+          >
+            <option value="day">Day</option>
+            <option value="week">Week</option>
+          </select>
+        ) : null}
+      </div>
     </div>
   )
 }

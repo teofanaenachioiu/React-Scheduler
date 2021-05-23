@@ -1,6 +1,5 @@
 import moment from 'moment'
-import * as React from 'react'
-import { Entry } from '../react-scheduler'
+import { Entry } from '../types'
 
 type Props = {
   date: Date

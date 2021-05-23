@@ -7,22 +7,37 @@
   height: 3rem;
 }
 
+.react-scheduler-toolbar > div {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0.3rem 0.5rem;
+}
+
 .react-scheduler-toolbar-text {
+  justify-content: center;
   cursor: default;
   font-weight: bold;
   padding: 0.5rem;
 }
 
+.react-scheduler-toolbar-text > svg {
+  padding: 0 0.5rem;
+}
+
 .react-scheduler-toolbar-view {
+  justify-content: flex-end;
+}
+
+.react-scheduler-toolbar-view select {
   padding: 0.3rem;
   outline: none;
   border: none;
   background-color: gainsboro;
-  margin-right: 0.5rem;
   border-radius: 5px;
 }
 
-.react-scheduler-toolbar-view:hover {
+.react-scheduler-toolbar-view select:hover {
   background-color: #e6e6e6;
 }
 

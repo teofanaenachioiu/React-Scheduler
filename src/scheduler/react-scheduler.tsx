@@ -5,21 +5,11 @@ import { ReactSchedulerWeekView } from './week-view/react-scheduler-week-view'
 import './react-scheduler.css'
 import { useState } from 'react'
 import moment from 'moment'
-
-export type Entry = {
-  date: Date | [Date, Date]
-  text: string
-}
-
-export type Item = {
-  name: string
-  items: Entry[]
-  onClick?: (event: any) => void
-}
+import { Item, View } from './types'
 
 type Props = {
   defaultDate?: Date
-  view?: 'day' | 'week'
+  view?: View
   workWeek?: boolean
   changeable?: boolean
   todayIcon?: boolean

@@ -1,6 +1,5 @@
 import moment from 'moment'
-import * as React from 'react'
-import { Entry, Item } from '../react-scheduler'
+import { Entry, Item } from '../types'
 import { ReactSchedulerDayViewCell } from './react-scheduler-day-view-cell'
 import { ReactSchedulerDayViewHeader } from './react-scheduler-day-view-header'
 import './react-scheduler-day-view.css'

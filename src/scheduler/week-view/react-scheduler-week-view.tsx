@@ -1,6 +1,6 @@
 import moment, { Moment } from 'moment'
 import * as React from 'react'
-import { Entry, Item } from '../react-scheduler'
+import { Item, Entry } from '../types'
 import { ReactSchedulerWeekViewCell } from './react-scheduler-week-view-cell'
 import { ReactSchedulerWeekViewHeader } from './react-scheduler-week-view-header'
 import './react-scheduler-week-view.css'
