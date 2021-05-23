@@ -10,6 +10,7 @@ function App() {
   return (
     <ReactScheduler
       changeable={true}
+      view={'day'}
       items={[
         {
           name: 'zero',

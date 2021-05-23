@@ -64,6 +64,7 @@ export function ReactSchedulerToolbar({
           id="view"
           className="pointer react-scheduler-toolbar-view"
           onChange={(e) => onChangeView(e.target.value as 'day' | 'week')}
+          value={view}
         >
           <option value="day">Day</option>
           <option value="week">Week</option>

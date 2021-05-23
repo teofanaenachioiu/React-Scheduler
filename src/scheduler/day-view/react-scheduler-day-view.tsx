@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Item } from '../react-scheduler'
 import { ReactSchedulerDayViewHeader } from './react-scheduler-day-view-header'
+import './react-scheduler-day-view.css'
 
 type Props = {
   date: Date
@@ -25,25 +26,26 @@ export function ReactSchedulerDayView({
   }
 
   return (
-    <React.Fragment>
+    <div className="react-scheduler-day">
       <ReactSchedulerDayViewHeader hours={hours} />
-      <div className="react-scheduler-day-view">
+      <div className="react-scheduler-week-view">
         {items.map((item, idx) => (
-          <div key={idx} className="react-scheduler-day-view-row">
-            <div className="react-scheduler-day-view-cell">
+          <div key={idx} className="react-scheduler-week-view-row">
+            <div className="react-scheduler-week-view-cell">
               <div>{item.name}</div>
             </div>
             {hours.map((cellDate, idx) => (
-              <div key={idx} className="react-scheduler-day-view-cell">
+              <div key={idx} className="react-scheduler-week-view-cell">
                 {/* {
                   item.items.find((i) => moment(i.date).hours() === cellDate)
                     ?.text
                 } */}
+                daa
               </div>
             ))}
           </div>
         ))}
       </div>
-    </React.Fragment>
+    </div>
   )
 }
