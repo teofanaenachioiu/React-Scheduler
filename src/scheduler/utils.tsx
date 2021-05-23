@@ -48,3 +48,21 @@ export function checkIsFriday(date: Date | Moment): boolean {
     .days(5)
     .isSame(moment(date).startOf('days'))
 }
+
+export function checkIsAfter(
+  date: Date | Moment,
+  minDate: Date | Moment | undefined,
+): boolean {
+  return minDate
+    ? moment(date).startOf('days').isAfter(moment(minDate).startOf('days'))
+    : true
+}
+
+export function checkIsBefore(
+  date: Date | Moment,
+  maxDate: Date | Moment | undefined,
+): boolean {
+  return maxDate
+    ? moment(date).startOf('days').isBefore(moment(maxDate).startOf('days'))
+    : true
+}

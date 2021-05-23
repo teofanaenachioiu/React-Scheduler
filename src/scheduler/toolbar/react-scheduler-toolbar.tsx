@@ -7,10 +7,13 @@ import {
   faClock,
 } from '@fortawesome/free-solid-svg-icons'
 import { formatFullDate, formatDateWeek } from '../format'
+import { checkIsAfter, checkIsBefore } from '../utils'
 import './react-scheduler-toolbar.css'
 
 type Props = {
   date: Date
+  minDate?: Date
+  maxDate?: Date
   view: 'day' | 'week'
   changeable: boolean
   todayIcon: boolean
@@ -22,6 +25,8 @@ type Props = {
 
 export function ReactSchedulerToolbar({
   date,
+  minDate,
+  maxDate,
   view,
   todayIcon,
   changeable,
@@ -44,11 +49,13 @@ export function ReactSchedulerToolbar({
 
       <div className="react-scheduler-toolbar-text">
         <FontAwesomeIcon
+          visibility={checkIsAfter(date, minDate) ? 'visible' : 'hidden'}
           onClick={onClickLeftArrow}
           className="pointer"
           icon={faChevronLeft}
           size="xs"
         />
+
         <span>
           <FontAwesomeIcon
             icon={view === 'day' ? faCalendarDay : faCalendarWeek}
@@ -57,7 +64,9 @@ export function ReactSchedulerToolbar({
             ? formatFullDate(date)
             : `Week ${formatDateWeek(date)}`}
         </span>
+
         <FontAwesomeIcon
+          visibility={checkIsBefore(date, maxDate) ? 'visible' : 'hidden'}
           onClick={onClickRightArrow}
           className="pointer"
           icon={faChevronRight}

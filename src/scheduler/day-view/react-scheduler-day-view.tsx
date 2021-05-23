@@ -11,19 +11,19 @@ import { ReactSchedulerDayViewHeader } from './react-scheduler-day-view-header'
 type Props = {
   date: Date
   items: Item[]
-  hourStart: number
-  hourEnd: number
-  hourStep: number
+  startHour: number
+  endHour: number
+  stepHour: number
 }
 
 export function ReactSchedulerDayView({
   date,
   items,
-  hourStart,
-  hourEnd,
-  hourStep,
+  startHour,
+  endHour,
+  stepHour,
 }: Props) {
-  const hours = hoursRange(hourStart, hourEnd, hourStep)
+  const hours = hoursRange(startHour, endHour, stepHour)
 
   const cellEntry = (item: Item, _hour: number): Entry | undefined =>
     item.items.find((i) =>
@@ -45,7 +45,7 @@ export function ReactSchedulerDayView({
             {hours.map((cellDate, idx) => (
               <div key={idx} className="react-scheduler-view-cell">
                 <ReactSchedulerDayViewCell
-                  startHour={hourStart}
+                  startHour={startHour}
                   entry={cellEntry(item, cellDate)}
                   onClick={item.onClick}
                 />

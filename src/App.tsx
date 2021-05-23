@@ -59,8 +59,8 @@ function App() {
       changeable={true}
       view={'day'}
       items={items}
-      hourStart={0}
-      hourEnd={23}
+      minDate={moment().startOf('days').subtract(10, 'days').toDate()}
+      maxDate={moment().startOf('days').add(10, 'days').toDate()}
     />
   )
 }

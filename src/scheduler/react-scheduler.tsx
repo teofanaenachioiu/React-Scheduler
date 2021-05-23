@@ -8,31 +8,35 @@ import moment from 'moment'
 import { Item, View } from './types'
 
 type Props = {
-  defaultDate?: Date
+  selectedDate?: Date
   view?: View
   workWeek?: boolean
   changeable?: boolean
   todayIcon?: boolean
   items?: Item[]
   toolbar?: React.ReactElement
-  hourStart?: number
-  hourEnd?: number
-  hourStep?: number
+  startHour?: number
+  endHour?: number
+  stepHour?: number
+  minDate?: Date
+  maxDate?: Date
 }
 
 export function ReactScheduler({
-  defaultDate = new Date(),
+  selectedDate = new Date(),
   view = 'week',
   workWeek = true,
   changeable = false,
   todayIcon = true,
   items = [],
   toolbar,
-  hourStart = 8,
-  hourEnd = 16,
-  hourStep = 1,
+  startHour = 0,
+  endHour = 23,
+  stepHour = 1,
+  minDate,
+  maxDate,
 }: Props) {
-  const [dateState, setDate] = useState(defaultDate)
+  const [dateState, setDate] = useState(selectedDate)
   const [viewState, setView] = useState(view)
 
   return (
@@ -41,12 +45,14 @@ export function ReactScheduler({
         toolbar
       ) : (
         <ReactSchedulerToolbar
+          minDate={minDate}
+          maxDate={maxDate}
           todayIcon={todayIcon}
           date={dateState}
           view={viewState}
           changeable={changeable}
           onChangeView={(value) => setView(value)}
-          onClickReset={() => setDate(moment(defaultDate).toDate())}
+          onClickReset={() => setDate(moment(selectedDate).toDate())}
           onClickLeftArrow={() =>
             setDate(
               moment(dateState)
@@ -67,9 +73,9 @@ export function ReactScheduler({
         <ReactSchedulerDayView
           date={dateState}
           items={items}
-          hourStart={hourStart}
-          hourEnd={hourEnd}
-          hourStep={hourStep}
+          startHour={startHour}
+          endHour={endHour}
+          stepHour={stepHour}
         />
       ) : (
         <ReactSchedulerWeekView
