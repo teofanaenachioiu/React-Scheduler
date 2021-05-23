@@ -7,12 +7,12 @@ type Props = {
 
 export function ReactSchedulerWeekViewHeader({ dates }: Props) {
   return (
-    <div className="react-scheduler-week-view-row">
-      <div className="react-scheduler-week-view-cell react-scheduler-week-view-cell-header"></div>
+    <div className="react-scheduler-view-row">
+      <div className="react-scheduler-view-cell react-scheduler-view-cell-header"></div>
       {dates.map((date, idx) => (
         <div
           key={idx}
-          className="react-scheduler-week-view-cell react-scheduler-week-view-cell-header"
+          className="react-scheduler-view-cell react-scheduler-view-cell-header"
         >
           <div>{formatDateWithDayName(date)}</div>
           <div className="header-date">{formatDateWithDayAndMonth(date)}</div>

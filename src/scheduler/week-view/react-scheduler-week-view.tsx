@@ -33,12 +33,12 @@ export function ReactSchedulerWeekView({ workWeek, date, items }: Props) {
       <ReactSchedulerWeekViewHeader dates={dates} />
       <div className="react-scheduler-week-view">
         {items.map((item, idx) => (
-          <div key={idx} className="react-scheduler-week-view-row">
-            <div className="react-scheduler-week-view-cell">
+          <div key={idx} className="react-scheduler-view-row">
+            <div className="react-scheduler-view-cell">
               <div>{item.name}</div>
             </div>
             {dates.map((cellDate, idx) => (
-              <div key={idx} className="react-scheduler-week-view-cell">
+              <div key={idx} className="react-scheduler-view-cell">
                 {
                   <ReactSchedulerWeekViewCell
                     date={cellDate.toDate()}

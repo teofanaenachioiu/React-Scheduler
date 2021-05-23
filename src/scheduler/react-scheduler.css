@@ -9,18 +9,18 @@
   font-size: 0.8rem;
 }
 
-.react-scheduler-week-view-row {
+.react-scheduler-view-row {
   border-top: solid 1px gainsboro;
   display: flex;
   justify-content: center;
   min-height: 3rem;
 }
 
-.react-scheduler-week-view-row:last-child {
+.react-scheduler-view-row:last-child {
   border-bottom: solid 1px gainsboro;
 }
 
-.react-scheduler-week-view-cell {
+.react-scheduler-view-cell {
   position: relative;
   display: flex;
   border-right: solid 1px gainsboro;
@@ -30,13 +30,13 @@
   background-color: white;
 }
 
-.react-scheduler-week-view-cell:first-child {
+.react-scheduler-view-cell:first-child {
   background-color: #f5f5f5;
   border-left: solid 1px gainsboro;
   padding: 0.4rem;
 }
 
-.react-scheduler-week-view-cell-header {
+.react-scheduler-view-cell-header {
   flex-direction: column;
   background-color: whitesmoke;
   font-weight: bold;
@@ -45,12 +45,12 @@
   padding-bottom: 0.7rem;
 }
 
-.react-scheduler-week-view-cell-header > .header-date {
+.react-scheduler-view-cell-header > .header-date {
   font-size: 1.3em;
   font-weight: 300;
 }
 
-.react-scheduler-week-view-cell-fill {
+.react-scheduler-view-cell-fill {
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -64,6 +64,6 @@
   position: absolute;
 }
 
-.react-scheduler-week-view-cell-fill:hover {
+.react-scheduler-view-cell-fill:hover {
   background-color: #00a7a7;
 }

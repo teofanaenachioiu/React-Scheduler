@@ -21,7 +21,7 @@ export function ReactSchedulerWeekViewCell({ date, entry, onClick }: Props) {
 
   return entry ? (
     <div
-      className="react-scheduler-week-view-cell-fill"
+      className="react-scheduler-view-cell-fill"
       onClick={onClick}
       style={{
         width: `calc(${overflow + 1}00% + ${overflow}px`,

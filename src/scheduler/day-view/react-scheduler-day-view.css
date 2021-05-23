@@ -2,13 +2,13 @@
   overflow: auto;
 }
 
-.react-scheduler-day .react-scheduler-week-view-cell:first-child {
+.react-scheduler-day .react-scheduler-view-cell:first-child {
   position: sticky;
   left: 0;
   z-index: 2;
 }
 
-.react-scheduler-day .react-scheduler-week-view-row {
+.react-scheduler-day .react-scheduler-view-row {
   justify-content: left !important;
   width: fit-content;
 }
