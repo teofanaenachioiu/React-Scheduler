@@ -1,5 +1,7 @@
+import moment from 'moment'
 import * as React from 'react'
-import { Item } from '../react-scheduler'
+import { Entry, Item } from '../react-scheduler'
+import { ReactSchedulerDayViewCell } from './react-scheduler-day-view-cell'
 import { ReactSchedulerDayViewHeader } from './react-scheduler-day-view-header'
 import './react-scheduler-day-view.css'
 
@@ -25,6 +27,29 @@ export function ReactSchedulerDayView({
     hours.push(hourEnd)
   }
 
+  const cellText = (item: Item, _hour: number): Entry | undefined => {
+    return item.items.find((i) => {
+      if (i.date instanceof Date) {
+        return (
+          moment(i.date).startOf('days').isSame(moment(date).startOf('days')) &&
+          moment(i.date).hours() === _hour
+        )
+      } else {
+        const [start, end] = i.date
+
+        return (
+          (moment(date).isBetween(
+            moment(start).startOf('days'),
+            moment(end).startOf('days'),
+            null,
+          ) ||
+            false) &&
+          _hour === moment(end).hours()
+        )
+      }
+    })
+  }
+
   return (
     <div className="react-scheduler-day">
       <ReactSchedulerDayViewHeader hours={hours} />
@@ -36,11 +61,11 @@ export function ReactSchedulerDayView({
             </div>
             {hours.map((cellDate, idx) => (
               <div key={idx} className="react-scheduler-week-view-cell">
-                {/* {
-                  item.items.find((i) => moment(i.date).hours() === cellDate)
-                    ?.text
-                } */}
-                daa
+                <ReactSchedulerDayViewCell
+                  startHour={hourStart}
+                  entry={cellText(item, cellDate)}
+                  onClick={item.onClick}
+                />
               </div>
             ))}
           </div>

@@ -1,11 +1,12 @@
 .react-scheduler {
-  padding: 0.5rem;
+  border: solid 1px gainsboro;
   display: flex;
   flex-direction: column;
   width: inherit;
   min-width: 30rem;
   max-width: 40rem;
-  font-size: 14px;
+  margin: 0.5rem;
+  font-size: 0.8rem;
 }
 
 .react-scheduler-week-view-row {

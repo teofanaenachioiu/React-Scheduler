@@ -60,14 +60,14 @@ export function ReactScheduler({
           onClickLeftArrow={() =>
             setDate(
               moment(dateState)
-                .subtract(view === 'day' ? 1 : 7, 'days')
+                .subtract(viewState === 'day' ? 1 : 7, 'days')
                 .toDate(),
             )
           }
           onClickRightArrow={() =>
             setDate(
               moment(dateState)
-                .add(view === 'day' ? 1 : 7, 'days')
+                .add(viewState === 'day' ? 1 : 7, 'days')
                 .toDate(),
             )
           }
