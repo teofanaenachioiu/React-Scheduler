@@ -38,8 +38,7 @@
 }
 
 .react-scheduler-view-cell.active {
-  background-color: #008080;
-  opacity: 0.3;
+  background-color: #99cccc;
 }
 
 .react-scheduler-view-cell-header {

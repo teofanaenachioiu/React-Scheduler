@@ -20,7 +20,7 @@ type Props = {
   stepHour?: number
   minDate?: Date
   maxDate?: Date
-  onSelectSlot?: (start: number, end: number) => void
+  onSelectSlot?: (start: number | Date, end: number | Date) => void
 }
 
 export function ReactScheduler({
@@ -85,6 +85,7 @@ export function ReactScheduler({
           workWeek={workWeek}
           date={dateState}
           items={items}
+          onSelectSlot={onSelectSlot}
         />
       )}
     </div>

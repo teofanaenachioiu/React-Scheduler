@@ -26,10 +26,10 @@ export function ReactSchedulerDayView({
   stepHour,
   onSelectSlot,
 }: Props) {
-  const [selectedHour, setSelectedHour] = useState(
+  const [selectedStart, setSelectedStart] = useState(
     undefined as number | undefined,
   )
-  const [selectedEndHour, setSelectedEndHour] = useState(
+  const [selectedEnd, setSelectedEnd] = useState(
     undefined as number | undefined,
   )
   const [selectedRow, setSelectedRow] = useState(
@@ -47,16 +47,16 @@ export function ReactSchedulerDayView({
     )
 
   const handleOnSelectHours = () => {
-    if (onSelectSlot && selectedHour && selectedEndHour) {
-      if (selectedHour > selectedEndHour) {
-        onSelectSlot(selectedEndHour, selectedHour)
+    if (onSelectSlot && selectedStart && selectedEnd) {
+      if (selectedStart > selectedEnd) {
+        onSelectSlot(selectedEnd, selectedStart)
       } else {
-        onSelectSlot(selectedHour, selectedEndHour)
+        onSelectSlot(selectedStart, selectedEnd)
       }
     }
     setSelectedRow(undefined)
-    setSelectedHour(undefined)
-    setSelectedEndHour(undefined)
+    setSelectedStart(undefined)
+    setSelectedEnd(undefined)
   }
 
   return (
@@ -72,29 +72,29 @@ export function ReactSchedulerDayView({
               <ReactSchedulerDayViewCell
                 key={hidx}
                 onMouseDown={() => {
-                  setSelectedHour(hour)
-                  setSelectedEndHour(hour)
+                  !selectedStart && setSelectedStart(hour)
+                  setSelectedEnd(hour)
                   setSelectedRow(ridx)
                 }}
                 onMouseUp={() => {
-                  setSelectedEndHour(hour)
+                  setSelectedEnd(hour)
                   handleOnSelectHours()
                 }}
                 onMouseOver={() => {
                   selectedRow !== undefined &&
-                    selectedHour !== undefined &&
-                    setSelectedEndHour(hour)
+                    selectedStart !== undefined &&
+                    setSelectedEnd(hour)
                 }}
                 startHour={startHour}
                 entry={cellEntry(item, hour)}
                 onClick={item.onClick}
                 active={
                   selectedRow !== undefined &&
-                  selectedHour !== undefined &&
-                  selectedEndHour !== undefined &&
+                  selectedStart !== undefined &&
+                  selectedEnd !== undefined &&
                   ridx === selectedRow &&
-                  ((hour >= selectedHour && hour <= selectedEndHour) ||
-                    (hour >= selectedEndHour && hour <= selectedHour))
+                  ((hour >= selectedStart && hour <= selectedEnd) ||
+                    (hour >= selectedEnd && hour <= selectedStart))
                 }
               />
             ))}

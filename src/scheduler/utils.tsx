@@ -32,14 +32,12 @@ export function checkIsSameEndHour(date: Date | Moment, hour: number): boolean {
 
 export function checkIsInInterval(
   date: Date | Moment,
-  interval: [Date, Date],
+  interval: [Date | Moment, Date | Moment],
 ): boolean {
   const [start, end] = interval
-  return moment(date).isBetween(
-    moment(start).startOf('days'),
-    moment(end).startOf('days'),
-    null,
-  )
+  return moment(date)
+    .startOf('days')
+    .isBetween(moment(start).startOf('days'), moment(end).startOf('days'), null)
 }
 
 export function checkIsFriday(date: Date | Moment): boolean {

@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useState } from 'react'
 import { Moment } from 'moment'
 import { Item, Entry } from '../types'
 import {
@@ -14,9 +15,25 @@ type Props = {
   workWeek: boolean
   date: Date
   items: Item[]
+  onSelectSlot?: (start: Date, end: Date) => void
 }
 
-export function ReactSchedulerWeekView({ workWeek, date, items }: Props) {
+export function ReactSchedulerWeekView({
+  workWeek,
+  date,
+  items,
+  onSelectSlot,
+}: Props) {
+  const [selectedStart, setSelectedStart] = useState(
+    undefined as Moment | undefined,
+  )
+  const [selectedEnd, setSelectedEnd] = useState(
+    undefined as Moment | undefined,
+  )
+  const [selectedRow, setSelectedRow] = useState(
+    undefined as number | undefined,
+  )
+
   const dates = datesRange(date, workWeek)
 
   const cellEntry = (item: Item, cellDate: Moment): Entry | undefined =>
@@ -27,25 +44,58 @@ export function ReactSchedulerWeekView({ workWeek, date, items }: Props) {
           (checkIsFriday(cellDate) && checkIsInInterval(cellDate, i.date)),
     )
 
+  const handleOnSelectDates = () => {
+    if (onSelectSlot && selectedStart && selectedEnd) {
+      if (selectedStart.isAfter(selectedEnd)) {
+        onSelectSlot(selectedEnd.toDate(), selectedStart.toDate())
+      } else {
+        onSelectSlot(selectedStart.toDate(), selectedEnd.toDate())
+      }
+    }
+    setSelectedRow(undefined)
+    setSelectedStart(undefined)
+    setSelectedEnd(undefined)
+  }
+
   return (
     <React.Fragment>
       <ReactSchedulerWeekViewHeader dates={dates} />
       <div className="react-scheduler-week-view">
-        {items.map((item, idx) => (
-          <div key={idx} className="react-scheduler-view-row">
+        {items.map((item, iidx) => (
+          <div key={iidx} className="react-scheduler-view-row">
             <div className="react-scheduler-view-cell">
               <div>{item.name}</div>
             </div>
-            {dates.map((cellDate, idx) => (
-              <div key={idx} className="react-scheduler-view-cell">
-                {
-                  <ReactSchedulerWeekViewCell
-                    date={cellDate.toDate()}
-                    entry={cellEntry(item, cellDate)}
-                    onClick={item.onClick}
-                  />
+            {dates.map((cellDate, didx) => (
+              <ReactSchedulerWeekViewCell
+                key={didx}
+                onMouseDown={() => {
+                  !selectedStart && setSelectedStart(cellDate)
+                  setSelectedEnd(cellDate)
+                  setSelectedRow(iidx)
+                }}
+                onMouseUp={() => {
+                  setSelectedEnd(cellDate)
+                  handleOnSelectDates()
+                }}
+                onMouseOver={() => {
+                  selectedRow !== undefined &&
+                    selectedStart !== undefined &&
+                    setSelectedEnd(cellDate)
+                }}
+                date={cellDate.toDate()}
+                entry={cellEntry(item, cellDate)}
+                onClick={item.onClick}
+                active={
+                  selectedStart !== undefined &&
+                  selectedEnd !== undefined &&
+                  iidx === selectedRow &&
+                  (checkIsSameDay(cellDate, selectedStart) ||
+                    checkIsSameDay(cellDate, selectedEnd) ||
+                    checkIsInInterval(cellDate, [selectedStart, selectedEnd]) ||
+                    checkIsInInterval(cellDate, [selectedEnd, selectedStart]))
                 }
-              </div>
+              />
             ))}
           </div>
         ))}
