@@ -107,22 +107,39 @@ const items = [
 
 | Name | Type | Default Value | Description |
 | ---- | -----| ------------- | ----------- |
-| `selectedDate` | Date | Today date |  An array of keyboard keys which corresponds to musical notes, from left to right the values will be assigned to the piano tiles. |
-| `view` | View Type | "week" | Color for white notes when they are pressed |
-| `workWeek` | boolean | true | Color for black notes when they are pressed |
-| `changeable` | boolean | false | It will show the key corresponding to each note |
-| `todayIcon` | boolean | true | It will show the notes corresponding to each tile |
-| `items` | Item Array | [] | The notes will start from startOctave |
-| `toolbar` | ReactElement | | The notes will end at endOctave |
-| `startHour` | number | 0 | It will sustain the note (some more seconds) after you release the key/click |
-| `endHour` | number | 23 | It will show Indian Note (Only applicable if `showNotes` is true) |
-| `stepHour` | number | 1 | Configuration for Indian note (Only applicable if `indianNote` is true) |
-| `minDate` | Date |  | Configuration for Indian note (Only applicable if `indianNote` is true) |
-| `maxDate` | Date |  | Configuration for Indian note (Only applicable if `indianNote` is true) |
-| `multipleSlotSelection` | boolean | true  | Configuration for Indian note (Only applicable if `indianNote` is true) |
-| `onSelectSlot` | function |  | Configuration for Indian note (Only applicable if `indianNote` is true) |
+| `selectedDate` | Date | Today date |  The date that is displayed first. |
+| `view` | View Type | "week" | The view of the calendar which can be week or day. |
+| `workWeek` | boolean | true | If workWeek is true, the calendar will display only work days. Else, the calendar will displays all the week days. |
+| `changeable` | boolean | false | If it is true, the user has the possibility to interchange the views. |
+| `todayIcon` | boolean | true | If it is true, the user has the possibility to reset the calendar to today date. |
+| `items` | Item Array | [] | The items in the calendar. |
+| `toolbar` | ReactElement | | Custom toolbar |
+| `startHour` | number | 0 | The start hour in day view |
+| `endHour` | number | 23 | The end hour in day view |
+| `stepHour` | number | 1 | The number of hour between two hours in day view. |
+| `minDate` | Date |  | Calendar minimum date |
+| `maxDate` | Date |  | Calendar maximum date |
+| `multipleSlotSelection` | boolean | true  | If it is true, the user has the possibility to select multiple slots. |
+| `onSelectSlot` | function |  | The function that handles the slot selection. The event returns the start and end dates. |
 
 ## Types
+
+```
+Entry {
+  date: Date | [Date, Date]
+  text: string
+}
+```
+```
+Item {
+  name: string
+  items: Entry[]
+  onClick?: (event: any) => void
+}
+```
+```
+View = 'day' | 'week'
+```
 
 ## Style
 
