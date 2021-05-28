@@ -120,7 +120,7 @@ const items = [
 | `minDate` | Date |  | Calendar minimum date |
 | `maxDate` | Date |  | Calendar maximum date |
 | `multipleSlotSelection` | boolean | true  | If it is true, the user has the possibility to select multiple slots. |
-| `onSelectSlot` | function |  | The function that handles the slot selection. The event returns the start and end dates. |
+| `onSelectSlot` | function |  | The function that handles the slot selection. The event returns the start and end (Date type) or start and end hour (number). |
 
 ## Types
 
