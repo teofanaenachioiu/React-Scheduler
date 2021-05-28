@@ -113,7 +113,6 @@ const items = [
 | `changeable` | boolean | false | If it is true, the user has the possibility to interchange the views. |
 | `todayIcon` | boolean | true | If it is true, the user has the possibility to reset the calendar to today date. |
 | `items` | Item Array | [] | The items in the calendar. |
-| `toolbar` | ReactElement | | Custom toolbar |
 | `startHour` | number | 0 | The start hour in day view |
 | `endHour` | number | 23 | The end hour in day view |
 | `stepHour` | number | 1 | The number of hour between two hours in day view. |
