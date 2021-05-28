@@ -20,8 +20,8 @@ type Props = {
   stepHour?: number
   minDate?: Date
   maxDate?: Date
-  onSelectSlot?: (start: number | Date, end: number | Date) => void
   multipleSlotSelection?: boolean
+  onSelectSlot?: (start: number | Date, end: number | Date) => void
 }
 
 export function ReactScheduler({

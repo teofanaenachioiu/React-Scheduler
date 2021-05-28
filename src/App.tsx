@@ -5,19 +5,19 @@ import { Item } from './scheduler/types'
 function App() {
   const items = [
     {
-      name: 'zero',
+      name: 'Teofana',
       items: [
         {
-          text: 'lala',
+          text: 'Sedinta',
           date: moment().subtract(10, 'days').toDate(),
         },
       ],
     },
     {
-      name: 'first',
+      name: 'Marta',
       items: [
         {
-          text: 'dada',
+          text: 'Workshop',
           date: [
             moment()
               .startOf('days')
@@ -31,10 +31,10 @@ function App() {
       onClick: () => alert('click!'),
     },
     {
-      name: 'second',
+      name: 'Andreea',
       items: [
         {
-          text: 'tata',
+          text: 'Interviu',
           date: moment()
             .startOf('days')
             .add(10, 'hours')
@@ -45,10 +45,10 @@ function App() {
       onClick: () => alert('click!'),
     },
     {
-      name: 'third',
+      name: 'Ioana',
       items: [
         {
-          text: 'dadadadad adadadadad adda',
+          text: 'Conferinta',
           date: moment().subtract(2, 'days').toDate(),
         },
       ],
